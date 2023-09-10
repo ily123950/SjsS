@@ -1,0 +1,76 @@
+-- List of possible answers
+local answers = {
+    "Yes",
+    "No",
+    "I don't know",
+    "Maybe",
+    "Certainly",
+    "Absolutely not",
+    "Of course",
+    "Ask me later",
+    "Definitely",
+    "Not a chance",
+    "Without a doubt",
+    "It's possible",
+    "Unlikely",
+    "Ask again",
+    "Can't say for sure",
+    "Absolutely",
+    "It is certain",
+    "Outlook good",
+    "Very doubtful",
+    "Signs point to yes",
+    "Reply hazy, try again",
+    "My sources say no",
+    "You may rely on it",
+    "Concentrate and ask again",
+    "Most likely",
+    "Don't count on it",
+    "Cannot predict now",
+    "Better not tell you now",
+    "My reply is no",
+    "As I see it, yes",
+    "It is decidedly so",
+    "Without a doubt",
+    "As sure as the sun rises",
+    "Indubitably",
+    "Absolutely and unequivocally",
+    "In all likelihood",
+    "Without a shadow of a doubt",
+    "Most assuredly",
+    "Positively",
+    "Undeniably",
+    "It's a certainty",
+    "No doubt about it",
+    "You can bet on it",
+    "100% guaranteed",
+    "It's written in the stars",
+    "The stars say yes",
+    "Absolutely, without question",
+    "You can take that to the bank",
+    "Without a shred of doubt",
+    "It's crystal clear",
+    "Without reservation",
+    "Incontestably",
+}
+
+-- Function to generate a random answer
+function getRandomAnswer()
+    local randomIndex = math.random(1, #answers)
+    return answers[randomIndex]
+end
+
+-- Function to handle local player chat input
+game.Players.LocalPlayer.Chatted:Connect(function(message)
+    local lowerMsg = string.lower(message)
+    
+    if lowerMsg:sub(1, 2) == ".q" then
+        local searchTerm = lowerMsg:sub(4, 1000) -- Extract up to 1000 characters after ".q"
+        wait(0.7) -- Wait for 0.7 seconds
+        local randomAnswer = getRandomAnswer()
+        
+        -- Add line breaks to the response
+        local response = "h \n\n\n\n\n\n" .. randomAnswer
+        game.Players:Chat(response)
+    end
+end)
